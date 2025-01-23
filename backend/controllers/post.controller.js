@@ -175,7 +175,6 @@ export const featurePost = async (req, res) => {
 
   res.status(200).json(updatedPost);
 };
-
 const imagekit = new ImageKit({
   urlEndpoint: process.env.IK_URL_ENDPOINT,
   publicKey: process.env.IK_PUBLIC_KEY,

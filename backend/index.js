@@ -1,4 +1,5 @@
 import express from "express";
+import dotenv from "dotenv";
 import connectDB from "./lib/connectDB.js";
 import userRouter from "./routes/user.route.js";
 import postRouter from "./routes/post.route.js";
@@ -7,6 +8,7 @@ import webhookRouter from "./routes/webhook.route.js";
 import { clerkMiddleware, requireAuth } from "@clerk/express";
 import cors from "cors";
 
+dotenv.config();
 const app = express();
 
 app.use(cors(process.env.CLIENT_URL));
@@ -57,8 +59,8 @@ app.use((error, req, res, next) => {
     stack: error.stack,
   });
 });
-
-app.listen(3000, () => {
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
   connectDB();
   console.log("Server is running!");
 });
